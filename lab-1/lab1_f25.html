@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="Generator" content="Microsoft Word 15 (filtered)">
+<title>CS4865/6865 - Laboratory #1</title>
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Cambria;
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+h1
+	{mso-style-link:"Heading 1 Char";
+	margin-right:0cm;
+	margin-left:0cm;
+	font-size:24.0pt;
+	font-family:"Times New Roman",serif;}
+h2
+	{mso-style-link:"Heading 2 Char";
+	margin-right:0cm;
+	margin-left:0cm;
+	font-size:18.0pt;
+	font-family:"Times New Roman",serif;}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:36.0pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+span.Heading1Char
+	{mso-style-name:"Heading 1 Char";
+	mso-style-link:"Heading 1";
+	font-family:"Cambria",serif;
+	color:#365F91;
+	font-weight:bold;}
+span.Heading2Char
+	{mso-style-name:"Heading 2 Char";
+	mso-style-link:"Heading 2";
+	font-family:"Cambria",serif;
+	color:#4F81BD;
+	font-weight:bold;}
+.MsoChpDefault
+	{font-size:10.0pt;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+-->
+</style>
+
+</head><body style="word-wrap:break-word" lang="EN-CA" link="blue" vlink="blue"><div class="WordSection1">
+<h1 style="margin-right: -49.95pt;"><span lang="EN-US" style="font-size: 16.0pt;">CS4865/6865 Fall 2025 <br>Laboratory #1</span></h1>
+<h1 style="margin-right: -49.95pt;"><span lang="EN-US" style="font-size: 16.0pt;">Friday, September 26, 9:30am in GC112 (in person)</span></h1>
+<h2 style="margin-right: -49.95pt;"><span lang="EN-US" style="font-size: 12.0pt;">Introduction to network simulation I <br>- packet transmission time calculations</span><br><span lang="EN-US" style="font-size: 12.0pt;">- network traffic visualization with NS2 simulation and network animator NAM</span><br><span lang="EN-US" style="font-size: 12.0pt;">- determining packet transmission time from the NS2 simulation trace file</span></h2>
+<h2 style="margin-right: -49.95pt;"><span lang="EN-US" style="font-weight: normal;">Reference materials:</span></h2>
+<p class="MsoNormal" style="text-indent: -18.0pt; margin: 0cm -49.95pt .0001pt 54.0pt;"><span lang="EN-US">1.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mark Greis, <a href="http://www.isi.edu/nsnam/ns/tutorial/index.html">Tutorial for the Network Simulator "ns'</a></span></p>
+<p class="MsoNormal" style="text-indent: -18.0pt; margin: 0cm -49.95pt .0001pt 54.0pt;"><span lang="EN-US">2.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="http://en.wikipedia.org/wiki/Tcl">TCL description</a>.</span></p>
+<p class="MsoNormal" style="text-indent: -18.0pt; margin: 0cm -49.95pt .0001pt 54.0pt;"><span lang="EN-US">3.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="https://www.isi.edu/nsnam/ns/ns-documentation.html">ns Manual</a>.</span></p>
+<p class="MsoNormal" style="text-indent: -18.0pt; margin: 0cm -49.95pt .0001pt 54.0pt;"><span lang="EN-US">4.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Trace file format: <a href="https://www.isi.edu/websites/nsnam/ns/doc/node289.html">https://www.isi.edu/websites/nsnam/ns/doc/node289.html</a> </span></p>
+<p class="MsoNormal" style="text-indent: -18.0pt; margin: 0cm -49.95pt .0001pt 54.0pt;"><span lang="EN-US">5.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; nam trace file format: <a href="https://www.isi.edu/websites/nsnam/ns/doc/node616.html">https://www.isi.edu/websites/nsnam/ns/doc/node616.html</a> </span></p>
+<p class="MsoNormal" style="text-indent: -18.0pt; margin: 0cm -49.95pt .0001pt 54.0pt;">&nbsp;</p>
+<p class="MsoNormal" style="text-indent: -18.0pt; margin: 0cm -49.95pt .0001pt 72.0pt;"><span lang="EN-US">&nbsp;</span></p>
+<p class="MsoNormal" style="margin-right: -49.95pt;"><span lang="EN-US">&nbsp;</span></p>
+<p class="MsoNormal" style="margin-right: -49.95pt;"><span lang="EN-US" style="font-size: 18.0pt;">General instructions:</span></p>
+<p class="MsoListParagraph" style="text-indent: -25.1pt; margin: 0cm -49.95pt .0001pt 63.8pt;"><span style="font-family: Symbol;">·</span><span style="font-size: 7.0pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span lang="EN-US">ns2 simulator runs under Linux in our FCS labs.</span></p>
+<p class="MsoListParagraph" style="text-indent: -25.1pt; margin: 0cm -49.95pt .0001pt 63.8pt;"><span style="font-family: Symbol;">·</span><span style="font-size: 7.0pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>If you are accessing the lab remotely please test the setup BEFORE the lab session:</p>
+<p class="MsoListParagraph" style="text-indent: -18.0pt; margin: 0cm -49.95pt .0001pt 3.0cm;"><span lang="EN-US" style="font-family: 'Courier New';">o</span><span lang="EN-US" style="font-size: 7.0pt;">&nbsp;&nbsp; </span>Complete and test the setup required for remote access to the FCS labs with GUI:<br><a href="https://www.cs.unb.ca/help/remote-lab-gui-access.shtml">https://www.cs.unb.ca/help/remote-lab-gui-access.shtml</a></p>
+<p class="MsoListParagraph" style="text-indent: -25.1pt; margin: 0cm -49.95pt .0001pt 63.8pt;"><span style="font-family: Symbol;">·</span><span style="font-size: 7.0pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span lang="EN-US">Complete lab exercises and prepare the lab report.</span></p>
+<p class="MsoListParagraph" style="text-indent: -25.1pt; margin: 0cm -49.95pt .0001pt 63.8pt;"><span style="font-family: Symbol;">·</span><span style="font-size: 7.0pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span lang="EN-US">During the lab (labs ONLY, not assignments) you may <u>work in groups,</u> however, individual D2L submissions are required from each student.</span></p>
+<p class="MsoNormal" style="margin-right: -49.95pt;"><span lang="EN-US">&nbsp;</span></p>
+<p class="MsoNormal" style="margin-right: -49.95pt;"><b><span lang="EN-US">Exercise</span></b><span lang="EN-US"> 1</span></p>
+<p class="MsoListParagraph" style="text-indent: -36.0pt; margin: 0cm -49.95pt 12.0pt 36.0pt;"><span lang="EN-US">1.1</span><span lang="EN-US" style="font-size: 7.0pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span lang="EN-US">Review the webpage on ns2 simulation prepared by Prof. DeDourek (no writeup necessary).<br><br></span><a href="http://www.cs.unb.ca/~dedourek/ns2.html">http://www.cs.unb.ca/~dedourek/ns2.html</a> <br><br></p>
+<p class="MsoNormal" style="margin-right: -49.95pt;"><b><span lang="EN-US">Exercise</span></b><span lang="EN-US"> 2</span></p>
+<p class="MsoListParagraph" style="margin-right: -49.95pt; text-indent: -36.0pt;"><span lang="EN-US">2.1</span><span lang="EN-US" style="font-size: 7.0pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span lang="EN-US">Complete the simulation described in Section IV of Mark Greis' tutorial. Create a work directory for Lab 1, then create a file with the simulation code (enter the TCL code using a text editor or load the entire file from the tutorial site). Run the ns2 simulator from the command window:<br></span><span lang="EN-US" style="font-family: 'Courier New';">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ns <i>name_of_the_tcl_file.tcl<br></i></span><span lang="EN-US">Submit the tcl file (embed the text in your lab report) and a snapshot of the simulator screen showing the simulation run (i.e. nam screenshoot).</span></p>
+<p class="MsoNormal" style="margin-right: -49.95pt;"><span lang="EN-US"><br><b>Exercise</b> 3&nbsp;</span></p>
+<p class="MsoListParagraph" style="margin-right: -49.95pt; text-indent: -36.0pt;"><span lang="EN-US">3.1</span><span lang="EN-US" style="font-size: 7.0pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span lang="EN-US">Show the first thirty lines of the trace file out.nam </span></p>
+<p class="MsoListParagraph" style="margin-right: -49.95pt; text-indent: -36.0pt;"><span lang="EN-US">3.2</span><span lang="EN-US" style="font-size: 7.0pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span lang="EN-US">Show the line in the trace file corresponding to the first packet being transmitted. </span></p>
+<p class="MsoListParagraph" style="margin-right: -49.95pt; text-indent: -36.0pt;"><span lang="EN-US">3.3</span><span lang="EN-US" style="font-size: 7.0pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span lang="EN-US">Show the line in the trace file corresponding to the first packet being received. </span></p>
+<p class="MsoNormal" style="margin-right: -49.95pt;"><b><span lang="EN-US"><br>Exercise</span></b><span lang="EN-US"> 4&nbsp;</span></p>
+<p class="MsoListParagraph" style="margin-right: -49.95pt; text-indent: -36.0pt;"><span lang="EN-US">4.1</span><span lang="EN-US" style="font-size: 7.0pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span lang="EN-US">Complete simulation of a packet forwarding network consisting of <u>three nodes</u>: the sender, one forwarding node and the receiver. Use the same link parameters and the packet size as in Exercise 2.</span><i><span lang="EN-US" style="font-family: 'Courier New';"><br></span></i><span lang="EN-US">Submit the tcl file (embed the text in your lab report) and a snapshot of the simulator screen showing the simulation run.</span></p>
+<p class="MsoNormal" style="margin-right: -49.95pt;"><span lang="EN-US"><br><b>Exercise</b> 5&nbsp;</span></p>
+<p class="MsoListParagraph" style="margin-right: -49.95pt; text-indent: -36.0pt;"><span lang="EN-US">5.1</span><span lang="EN-US" style="font-size: 7.0pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span lang="EN-US">Show the first thirty lines of the trace file out.nam from the simulation in Exercise 4</span></p>
+<p class="MsoListParagraph" style="text-indent: -36.0pt; margin: 0cm -49.95pt 12.0pt 36.0pt;"><span lang="EN-US">5.2</span><span lang="EN-US" style="font-size: 7.0pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span lang="EN-US">- Show the line in the trace file corresponding to the first packet being transmitted. What’s the time stamp?</span><br>- <span lang="EN-US">Show the line in the trace file corresponding to the first packet being received at the forwarding node. What’s the time stamp? </span><br><span lang="EN-US">- Show the line in the trace file corresponding to the first packet being received at the destination node. What’s the time stamp?<br>- How long does it take to deliver the first packet to its destination? Can it be calculated from the timestamps recorded in the trace file (show how)?</span></p>
+<p class="MsoNormal" style="margin-right: -49.95pt;"><b><span lang="EN-US">Exercise</span></b><span lang="EN-US"> 6&nbsp;</span></p>
+<p class="MsoListParagraph" style="margin-right: -49.95pt; text-indent: -36.0pt;"><span lang="EN-US">6.1</span><span lang="EN-US" style="font-size: 7.0pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span lang="EN-US">Can the delay of the first packet (from Exercise 5) be calculated theoretically, i.e. derived from the network topology, link data rates, link delays and packet size? Show the formula and calculate the delay. Is this value the same as what you calculated in Exercise 5.2?</span></p>
+<p class="MsoNormal" style="margin-right: -49.95pt;"><span lang="EN-US">&nbsp;</span></p>
+<p class="MsoNormal" style="margin: 0cm -49.95pt 12.0pt 0cm;"><span lang="EN-US">Complete and then prepare the documentation for Exercises 1 to 6 (use the headings indicating the question number) and store it in a <b>single PDF file</b>. Include a preamble (title, section) with your name, student number, course number etc. Please number all the pages! Submit this single PDF file on D2L as Lab 1 Report by the due date indicated in the D2L dropbox.</span></p>
+<p class="MsoNormal" style="margin: 0cm -49.95pt 12.0pt 0cm;"><i><span lang="EN-US" style="font-size: 8.0pt;">Maintained by <a href="mailto:pochec@unb.ca">pochec@unb.ca</a></span></i></p>
+<p class="MsoNormal" style="margin: 0cm -49.95pt 12.0pt 0cm;"><span lang="EN-US">&nbsp;</span></p>
+</div>
+<p></p></body></html>
