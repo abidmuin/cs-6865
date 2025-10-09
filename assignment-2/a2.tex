@@ -18,6 +18,9 @@
 \usepackage{colortbl}
 \usepackage{array}
 \usepackage{makecell}
+\usepackage{booktabs}
+\usepackage{pgf}
+
 
 \usepackage{listings}
 \lstset{
@@ -54,8 +57,6 @@
 	
 	\maketitle
 	
-	% Question 1
-	
 	\section{}
 	
 	\subsection{Description of `traceroute' command}
@@ -81,6 +82,153 @@
 	12  172.67.170.169 (172.67.170.169)  47.902 ms  48.246 ms  48.137 ms
 	\end{lstlisting}
 	\end{adjustwidth}
+	
+	\subsection{Calculation of Individual Link Delays}
+	
+	To estimate individual link delays along the route from a traceroute output, we can subtract the round-trip time (RTT) of the previous hop from the RTT of the current hop. This gives a rough estimate of the delay between two successive hops.
+	
+	\begin{equation*}
+		Link\,Delay = RTT_{current\,hop} - RTT_{previous\,hop}
+	\end{equation*}
+		
+	\noindent
+	\textbf{Average RTT of each Hop:} \\
+	
+	\begin{tabular}{|c|>{\raggedright\arraybackslash}p{6cm}|c|}
+		\hline
+		\textbf{Hop} & \textbf{RTTs (ms)} & \textbf{Avg RTT (ms)} \\
+		\hline
+		
+		% Hop 1
+		1 & 3.625, 3.526, 3.711 &
+		\pgfmathparse{(3.625+3.526+3.711)/3}\pgfmathprintnumber[fixed, precision=2]{\pgfmathresult} \\
+		
+		\hline
+		
+		% Hop 2
+		2 & 4.841, 4.784, 4.737 &
+		\pgfmathparse{(4.841+4.784+4.737)/3}\pgfmathprintnumber[fixed, precision=2]{\pgfmathresult} \\
+		
+		\hline
+		
+		% Hop 3
+		3 & 3.096, 3.052, 3.007 &
+		\pgfmathparse{(3.096+3.052+3.007)/3}\pgfmathprintnumber[fixed, precision=2]{\pgfmathresult} \\
+		
+		\hline
+		
+		% Hop 4
+		4 & 4.558, 4.514, 4.471 &
+		\pgfmathparse{(4.558+4.514+4.471)/3}\pgfmathprintnumber[fixed, precision=2]{\pgfmathresult} \\
+		
+		\hline
+		
+		% Hop 5
+		5 & 4.426, 4.382, 4.412 &
+		\pgfmathparse{(4.426+4.382+4.412)/3}\pgfmathprintnumber[fixed, precision=2]{\pgfmathresult} \\
+		
+		\hline
+		
+		% Hop 6
+		6 & 4.367, 3.288, 3.195 &
+		\pgfmathparse{(4.367+3.288+3.195)/3}\pgfmathprintnumber[fixed, precision=2]{\pgfmathresult} \\
+		
+		\hline
+		
+		% Hop 7
+		7 & 5.779, 4.730, 4.671 &
+		\pgfmathparse{(5.779+4.730+4.671)/3}\pgfmathprintnumber[fixed, precision=2]{\pgfmathresult} \\
+		
+		\hline
+		
+		% Hop 8
+		8 & 23.305, 23.205, 23.155 &
+		\pgfmathparse{(23.305+23.205+23.155)/3}\pgfmathprintnumber[fixed, precision=2]{\pgfmathresult} \\
+		
+		\hline
+		
+		% Hop 9
+		9 & 32.701, 32.658, 32.590 &
+		\pgfmathparse{(32.701+32.658+32.590)/3}\pgfmathprintnumber[fixed, precision=2]{\pgfmathresult} \\
+		
+		\hline
+		
+		% Hop 10 (special case, only one RTT)
+		10 & * *, 38.768 &
+		38.77 \\
+		
+		\hline
+		
+		% Hop 11
+		11 & 48.033, 49.509, 48.332 &
+		\pgfmathparse{(48.033+49.509+48.332)/3}\pgfmathprintnumber[fixed, precision=2]{\pgfmathresult} \\
+		
+		\hline
+		
+		% Hop 12
+		12 & 47.902, 48.246, 48.137 &
+		\pgfmathparse{(47.902+48.246+48.137)/3}\pgfmathprintnumber[fixed, precision=2]{\pgfmathresult} \\
+		
+		\hline
+		
+	\end{tabular}
+	
+	\noindent
+	\textbf{Estimated Individual Link Delays:}
+	
+	\begin{table}[h]
+		\centering
+		\begin{tabular}{|c|c|c|}
+			\hline
+			Link (Hop) & RTT (ms) & $\Delta$ RTT (Estimated Link Delay) \\
+			\hline
+			
+			Hop 1 & 3.526 & --- \\
+			\hline
+			
+			Hop 1 $\rightarrow$ Hop 2 & $4.784 - 3.526$ & --- \\
+			\hline
+			
+			Hop 2 $\rightarrow$ Hop 3 & $3.052 - 4.784$ & --- \\
+			\hline
+			
+			Hop 3 $\rightarrow$ Hop 4 & $ $ & --- \\
+			\hline
+			
+			Hop 4 $\rightarrow$ Hop 5 & 2 & --- \\
+			\hline
+			
+			Hop 5 $\rightarrow$ Hop 6 & 2 & --- \\
+			\hline
+			
+			Hop 6 $\rightarrow$ Hop 7 & 2 & --- \\
+			\hline
+			
+			Hop 7 $\rightarrow$ Hop 8 & 2 & --- \\
+			\hline
+			
+			Hop 8 $\rightarrow$ Hop 9 & 2 & --- \\
+			\hline
+			
+			Hop 9 $\rightarrow$ Hop 10 & 2 & --- \\
+			\hline
+			
+			Hop 10 $\rightarrow$ Hop 11 & 2 & --- \\
+			\hline
+			
+			Hop 11 $\rightarrow$ Hop 12 & 2 & --- \\
+			\hline
+			
+		\end{tabular}
+		\caption{Estimated link delays}
+		\label{tab:eld}
+	\end{table}
+
+
+	
+	
+	
+	
 	
 	\section*{References}
 	\begin{thebibliography}{9}
