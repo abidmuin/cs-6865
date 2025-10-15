@@ -1,0 +1,39 @@
+======================================================================
+NS2 TRACE FILE ANALYSIS REPORT
+======================================================================
+Trace file: exer_1_1.nam
+Total lines processed: 3,210
+
+TIME ANALYSIS:
+----------------------------------------
+First packet sent at: 0.500000 seconds
+Last packet sent at:  4.500000 seconds
+Total duration:       4.000000 seconds
+
+PACKET STATISTICS:
+----------------------------------------
+Total packets sent:     801
+Total packets received: 801
+Packet size:           500 bytes
+Packet delivery ratio: 100.00%
+
+THROUGHPUT ANALYSIS:
+----------------------------------------
+SENT THROUGHPUT (Offered Load):
+  801,000.00 bps
+  801.00 kbps
+  0.801 Mbps
+
+RECEIVED THROUGHPUT (Effective Throughput):
+  801,000.00 bps
+  801.00 kbps
+  0.801 Mbps
+
+VERIFICATION SAMPLES:
+----------------------------------------
+First 2 send events:
+  Line 7: + -t 0.5 -i 0 -e 500
+  Line 10: + -t 0.505 -i 1 -e 500
+Last send event:
+  Line 3205: + -t 4.49999999999993 -i 800 -e 500
+======================================================================

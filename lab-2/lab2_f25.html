@@ -1,0 +1,429 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=us-ascii">
+<meta name=Generator content="Microsoft Word 15 (filtered)">
+<title>CS4865/6865 - Laboratory ...</title>
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Cambria;
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:"Arial Narrow";
+	panose-1:2 11 6 6 2 2 2 3 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+h1
+	{mso-style-link:"Heading 1 Char";
+	margin-right:0cm;
+	margin-left:0cm;
+	font-size:24.0pt;
+	font-family:"Times New Roman",serif;}
+h2
+	{mso-style-link:"Heading 2 Char";
+	margin-right:0cm;
+	margin-left:0cm;
+	font-size:18.0pt;
+	font-family:"Times New Roman",serif;}
+p.MsoBodyText, li.MsoBodyText, div.MsoBodyText
+	{mso-style-link:"Body Text Char";
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:12.0pt;
+	margin-left:0cm;
+	font-size:12.0pt;
+	font-family:"Arial Narrow",sans-serif;}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:36.0pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+span.Heading1Char
+	{mso-style-name:"Heading 1 Char";
+	mso-style-link:"Heading 1";
+	font-family:"Cambria",serif;
+	color:#365F91;
+	font-weight:bold;}
+span.Heading2Char
+	{mso-style-name:"Heading 2 Char";
+	mso-style-link:"Heading 2";
+	font-family:"Cambria",serif;
+	color:#4F81BD;
+	font-weight:bold;}
+span.BodyTextChar
+	{mso-style-name:"Body Text Char";
+	mso-style-link:"Body Text";
+	font-family:"Arial Narrow",sans-serif;}
+.MsoChpDefault
+	{font-size:10.0pt;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-CA link=blue vlink=blue style='word-wrap:break-word'>
+
+<div class=WordSection1>
+
+<h1 style='margin-right:-49.95pt'><span lang=EN-US style='font-size:16.0pt'>CS4865/6865
+Fall 2025 <br>
+Laboratory #2</span></h1>
+
+<h1 style='margin-right:-49.95pt'><span lang=EN-US style='font-size:16.0pt'>Friday,
+October 10, 9:30am in GC112 </span></h1>
+
+<h2 style='margin-right:-49.95pt'><span lang=EN-US style='font-size:12.0pt'>Introduction
+to network simulation II <br>
+Visualization and throughput calculation of a UDP flow <br>
+&nbsp;&nbsp;&nbsp; - effective data rate as a function of packet rate and
+packet size</span><br>
+<span lang=EN-US style='font-size:12.0pt'>Visualization and throughput
+calculation of a TCP flow (stop and wait protocol, sliding window protocol)<br>
+&nbsp;&nbsp;&nbsp; - effective data rate as a function of link delay, link data
+rate, packet size and window size</span></h2>
+
+<h2 style='margin-right:-49.95pt'><span lang=EN-US style='font-weight:normal'>Reference
+materials:</span></h2>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:-49.95pt;margin-bottom:
+0cm;margin-left:54.0pt;margin-bottom:.0001pt;text-indent:-18.0pt'><span
+lang=EN-US>1.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mark Greis, <a
+href="http://www.isi.edu/nsnam/ns/tutorial/index.html">Tutorial for the Network
+Simulator &quot;ns'</a></span></p>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:-49.95pt;margin-bottom:
+0cm;margin-left:54.0pt;margin-bottom:.0001pt;text-indent:-18.0pt'><span
+lang=EN-US>2.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a
+href="http://en.wikipedia.org/wiki/Tcl">TCL description</a>.</span></p>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:-49.95pt;margin-bottom:
+0cm;margin-left:54.0pt;margin-bottom:.0001pt;text-indent:-18.0pt'><span
+lang=EN-US>3.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a
+href="https://www.isi.edu/nsnam/ns/ns-documentation.html">ns Manual</a>.</span></p>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:-49.95pt;margin-bottom:
+0cm;margin-left:54.0pt;margin-bottom:.0001pt;text-indent:-18.0pt'><span
+lang=EN-US>4.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Trace file format: <a
+href="https://www.isi.edu/websites/nsnam/ns/doc/node289.html">https://www.isi.edu/websites/nsnam/ns/doc/node289.html</a>
+</span></p>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:-49.95pt;margin-bottom:
+0cm;margin-left:54.0pt;margin-bottom:.0001pt;text-indent:-18.0pt'><span
+lang=EN-US>5.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; nam trace file format: <a
+href="https://www.isi.edu/websites/nsnam/ns/doc/node616.html">https://www.isi.edu/websites/nsnam/ns/doc/node616.html</a>
+</span></p>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:-49.95pt;margin-bottom:
+0cm;margin-left:54.0pt;margin-bottom:.0001pt;text-indent:-18.0pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:-49.95pt;margin-bottom:
+0cm;margin-left:72.0pt;margin-bottom:.0001pt;text-indent:-18.0pt'><span
+lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-right:-49.95pt'><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-right:-49.95pt'><span lang=EN-US
+style='font-size:18.0pt'>General instructions:</span></p>
+
+<p class=MsoListParagraph style='margin-top:0cm;margin-right:-49.95pt;
+margin-bottom:0cm;margin-left:63.8pt;margin-bottom:.0001pt;text-indent:-25.1pt'><span
+style='font-family:Symbol'>&middot;</span><span style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span lang=EN-US>ns2 simulator runs under Linux in our FCS labs.</span></p>
+
+<p class=MsoListParagraph style='margin-top:0cm;margin-right:-49.95pt;
+margin-bottom:0cm;margin-left:63.8pt;margin-bottom:.0001pt;text-indent:-25.1pt'><span
+style='font-family:Symbol'>&middot;</span><span style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>If you are accessing the lab remotely please test the setup BEFORE the
+lab session:</p>
+
+<p class=MsoListParagraph style='margin-top:0cm;margin-right:-49.95pt;
+margin-bottom:0cm;margin-left:3.0cm;margin-bottom:.0001pt;text-indent:-18.0pt'><span
+lang=EN-US style='font-family:"Courier New"'>o</span><span lang=EN-US
+style='font-size:7.0pt'>&nbsp;&nbsp; </span>Complete and test the setup
+required for remote access to the FCS labs with GUI:<br>
+<a href="https://www.cs.unb.ca/help/remote-lab-gui-access.shtml">https://www.cs.unb.ca/help/remote-lab-gui-access.shtml</a>
+</p>
+
+<p class=MsoListParagraph style='margin-top:0cm;margin-right:-49.95pt;
+margin-bottom:0cm;margin-left:63.8pt;margin-bottom:.0001pt;text-indent:-25.1pt'><span
+style='font-family:Symbol'>&middot;</span><span style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span lang=EN-US>Complete lab exercises and prepare the lab report.</span></p>
+
+<p class=MsoListParagraph style='margin-top:0cm;margin-right:-49.95pt;
+margin-bottom:0cm;margin-left:63.8pt;margin-bottom:.0001pt;text-indent:-25.1pt'><span
+style='font-family:Symbol'>&middot;</span><span style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span lang=EN-US>During the lab (labs ONLY, not assignments) you may <u>work
+in groups,</u> however, individual D2L submissions are required from each
+student.</span></p>
+
+<p class=MsoNormal style='margin-right:-49.95pt'><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoBodyText style='margin-bottom:0cm'><b><span lang=EN-US
+style='font-family:"Times New Roman",serif'>Exercise 1</span></b><span
+lang=EN-US style='font-family:"Times New Roman",serif'> UDP: calculating
+throughput in a simulated network</span></p>
+
+<p class=MsoBodyText style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:49.5pt'><span lang=EN-US style='font-family:"Times New Roman",serif'>&nbsp;</span></p>
+
+<p class=MsoBodyText style='margin-left:49.5pt;text-indent:-33.0pt'><span
+lang=EN-US style='font-family:"Times New Roman",serif'>1.1.</span><span
+lang=EN-US style='font-size:7.0pt;font-family:"Times New Roman",serif'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+lang=EN-US style='font-family:"Times New Roman",serif'>First rerun the simulation
+form from Lab 1: Part IV of Mark Greis' tutorial. Show one screen capture for
+this run and call it &#8220;UDP data flow example&#8221;.</span></p>
+
+<p class=MsoBodyText style='margin-left:49.5pt;text-indent:-33.0pt'><span
+lang=EN-US style='font-family:"Times New Roman",serif'>1.2.</span><span
+lang=EN-US style='font-size:7.0pt;font-family:"Times New Roman",serif'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+lang=EN-US style='font-family:"Times New Roman",serif'>Inspect the trace file
+and calculate the effective throughput of the simulated connection (Hint: (i)
+first determine the duration of the transfer by checking the time stamp of the
+first and the last packet, then (ii) determine how many bits (packets) were
+transferred during this period and finally (iii) calculate the effective
+throughput.) Also show the relevant lines from the trace file in your lab
+report.</span></p>
+
+<p class=MsoBodyText style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:49.5pt;text-indent:-33.0pt'><span lang=EN-US style='font-family:
+"Times New Roman",serif'>1.3.</span><span lang=EN-US style='font-size:7.0pt;
+font-family:"Times New Roman",serif'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+lang=EN-US style='font-family:"Times New Roman",serif'>List the parameters used
+by the CBR traffic generator and the UDP agent: packet (frame) size and sending
+interval. Using these values, derive the formula and then calculate for the
+theoretical effective throughput of this simulated data flow. Compare the
+values obtained in Exercise 1.2 and 1.3.</span></p>
+
+<p class=MsoBodyText style='margin-bottom:0cm'><span lang=EN-US
+style='font-family:"Times New Roman",serif'>&nbsp;</span></p>
+
+<p class=MsoBodyText style='margin-bottom:0cm'><b><span lang=EN-US
+style='font-family:"Times New Roman",serif'>Exercise 2</span></b><span
+lang=EN-US style='font-family:"Times New Roman",serif'> Modelling <b>stop and
+wait</b> protocol using TCP </span></p>
+
+<p class=MsoBodyText style='margin-bottom:0cm'><span lang=EN-US
+style='font-family:"Times New Roman",serif'>&nbsp;</span></p>
+
+<p class=MsoBodyText style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:48.0pt;text-indent:-30.0pt'><span lang=EN-US style='font-family:
+"Times New Roman",serif'>2.1.</span><span lang=EN-US style='font-size:7.0pt;
+font-family:"Times New Roman",serif'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+lang=EN-US style='font-family:"Times New Roman",serif'>Modify the tcl code
+(tested in 1.1 above) following the instructions below. Test the modified code.</span></p>
+
+<p class=MsoBodyText style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:48.0pt'><span lang=EN-US style='font-family:"Times New Roman",serif'>&nbsp;</span></p>
+
+<p class=MsoBodyText style='margin-left:66.0pt;text-indent:-18.0pt'><span
+lang=EN-US style='font-family:"Times New Roman",serif'>a.</span><span
+lang=EN-US style='font-size:7.0pt;font-family:"Times New Roman",serif'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+lang=EN-US style='font-family:"Times New Roman",serif'>Change the sending agent
+form UDP to TCP, specify the packet size 500 and the (maximum) window size 1,
+and attach it to the sending node:</span></p>
+
+<p class=MsoBodyText style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:66.0pt'><span lang=EN-US style='font-family:"Courier New"'>set tcp0
+[new Agent/TCP]</span></p>
+
+<p class=MsoBodyText style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:66.0pt'><span lang=EN-US style='font-family:"Courier New"'>$tcp0
+set packetSize_ 500</span></p>
+
+<p class=MsoBodyText style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:66.0pt'><b><span lang=EN-US style='font-family:"Courier New"'>$tcp0
+set window_ 1</span></b></p>
+
+<p class=MsoBodyText style='margin-left:66.0pt'><span lang=EN-US
+style='font-family:"Courier New"'>$ns attach-agent $n0 $tcp0</span></p>
+
+<p class=MsoBodyText style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:66.0pt;text-indent:-18.0pt'><span lang=EN-US style='font-family:
+"Times New Roman",serif'>b.</span><span lang=EN-US style='font-size:7.0pt;
+font-family:"Times New Roman",serif'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+lang=EN-US style='font-family:"Times New Roman",serif'>Change the&nbsp;traffic
+application agent from CBR to FTP and attach it to the sending agent (again
+modify the code from 2.1)</span></p>
+
+<p class=MsoBodyText style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:66.0pt'><span lang=EN-US style='font-family:"Times New Roman",serif'>&nbsp;</span></p>
+
+<p class=MsoBodyText style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:66.0pt'><span lang=EN-US style='font-family:"Courier New"'>set ftp0
+[new Application/FTP]</span></p>
+
+<p class=MsoBodyText style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:66.0pt'><span lang=EN-US style='font-family:"Courier New"'>$ftp0 attach-agent
+$tcp0</span></p>
+
+<p class=MsoBodyText style='margin-bottom:0cm'><span lang=EN-US
+style='font-family:"Times New Roman",serif'>&nbsp;</span></p>
+
+<p class=MsoBodyText style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:66.0pt;text-indent:-18.0pt'><span lang=EN-US style='font-family:
+"Times New Roman",serif'>c.</span><span lang=EN-US style='font-size:7.0pt;
+font-family:"Times New Roman",serif'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+lang=EN-US style='font-family:"Times New Roman",serif'>Change the traffic sink
+from the Null agent to the TCPSink agent</span></p>
+
+<p class=MsoBodyText style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:66.0pt'><span lang=EN-US style='font-family:"Times New Roman",serif'>&nbsp;</span></p>
+
+<p class=MsoBodyText style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:66.0pt'><span lang=EN-US style='font-family:"Courier New"'>set
+sink0 [new Agent/TCPSink]</span></p>
+
+<p class=MsoBodyText style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:66.0pt'><span lang=EN-US style='font-family:"Courier New"'>$ns
+attach-agent $n1 $sink0</span></p>
+
+<p class=MsoBodyText style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:66.0pt'><span lang=EN-US style='font-family:"Times New Roman",serif'>&nbsp;</span></p>
+
+<p class=MsoBodyText style='margin-left:66.0pt;text-indent:-18.0pt'><span
+lang=EN-US style='font-family:"Times New Roman",serif'>d.</span><span
+lang=EN-US style='font-size:7.0pt;font-family:"Times New Roman",serif'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+lang=EN-US style='font-family:"Times New Roman",serif'>Finally modify the </span><span
+lang=EN-US style='font-family:"Courier New"'>$ns start</span><span lang=EN-US
+style='font-family:"Times New Roman",serif'> and </span><span lang=EN-US
+style='font-family:"Courier New"'>stop</span><span lang=EN-US style='font-family:
+"Times New Roman",serif'> commands to reflect the new design of the simulation
+experiment (you may need to find a web reference on how to start FTP flows in
+ns2).</span></p>
+
+<p class=MsoBodyText style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:66.0pt;text-indent:-18.0pt'><span lang=EN-US style='font-family:
+"Times New Roman",serif'>e.</span><span lang=EN-US style='font-size:7.0pt;
+font-family:"Times New Roman",serif'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+lang=EN-US style='font-family:"Times New Roman",serif'>Run the simulation,
+observe the traffic in nam in slow motion and then comment on the differences
+between the original Mark Greis&#8217; experiment (i.e. Exercise 1.1 in this
+lab) and your new simulation. What is the main difference (from the original experiment
+from Exercise 1.1) in the traffic pattern visible in nam? Show the new source
+code and one simulation screen capture (call it &#8220;stop and wait TCP flow
+example&#8221;) in your lab report.</span></p>
+
+<p class=MsoBodyText style='margin-bottom:0cm'><span lang=EN-US
+style='font-family:"Times New Roman",serif'>&nbsp;</span></p>
+
+<p class=MsoBodyText style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:49.5pt;text-indent:-33.0pt'><span lang=EN-US style='font-family:
+"Times New Roman",serif'>2.2.</span><span lang=EN-US style='font-size:7.0pt;
+font-family:"Times New Roman",serif'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+lang=EN-US style='font-family:"Times New Roman",serif'>Inspect the trace file
+and calculate the effective throughput of the simulated connection (Hint: (i)
+first determine the duration of the transfer by checking the time stamp of the
+first and the last packet, then (ii) determine how many bits (packets) were
+transferred from the source to the destination during this period and finally
+(iii) calculate the effective throughput.) Also show the relevant lines from
+the trace file in your lab report.</span></p>
+
+<p class=MsoBodyText style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:48.0pt'><span lang=EN-US style='font-family:"Times New Roman",serif'>&nbsp;</span></p>
+
+<p class=MsoBodyText style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:49.5pt;text-indent:-33.0pt'><span lang=EN-US style='font-family:
+"Times New Roman",serif'>2.3.</span><span lang=EN-US style='font-size:7.0pt;
+font-family:"Times New Roman",serif'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+lang=EN-US style='font-family:"Times New Roman",serif'>List the parameters of
+the n0-n1 link and the parameters used by the TCP agent: link delay, link data
+rate, and the packet (frame) size. Using these values, derive the formula for,
+and then calculate, the theoretical effective throughput of this simulated data
+flow. Compare the values obtained in Exercise 2.2 and 2.3.</span></p>
+
+<p class=MsoBodyText style='margin-bottom:0cm'><span lang=EN-US>&nbsp;<br>
+</span><b><span lang=EN-US style='font-family:"Times New Roman",serif'>Exercise
+3</span></b><span lang=EN-US style='font-family:"Times New Roman",serif'>
+Modelling sliding window protocol with TCP</span></p>
+
+<p class=MsoBodyText style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:49.5pt'><span lang=EN-US style='font-family:"Times New Roman",serif'>&nbsp;</span></p>
+
+<p class=MsoBodyText style='margin-left:49.5pt;text-indent:-33.0pt'><span
+lang=EN-US style='font-family:"Times New Roman",serif'>3.1.</span><span
+lang=EN-US style='font-size:7.0pt;font-family:"Times New Roman",serif'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+lang=EN-US style='font-family:"Times New Roman",serif'>Repeat the simulation
+from Ex. 2, setting the window size to 2.</span></p>
+
+<p class=MsoBodyText style='margin-left:49.5pt;text-indent:-33.0pt'><span
+lang=EN-US style='font-family:"Times New Roman",serif'>3.2.</span><span
+lang=EN-US style='font-size:7.0pt;font-family:"Times New Roman",serif'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+lang=EN-US style='font-family:"Times New Roman",serif'>same as 2.2 </span></p>
+
+<p class=MsoBodyText style='margin-left:49.5pt;text-indent:-33.0pt'><span
+lang=EN-US style='font-family:"Times New Roman",serif'>3.3.</span><span
+lang=EN-US style='font-size:7.0pt;font-family:"Times New Roman",serif'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+lang=EN-US style='font-family:"Times New Roman",serif'>same as 2.3</span></p>
+
+<p class=MsoBodyText style='margin-bottom:0cm'><b><span lang=EN-US
+style='font-family:"Times New Roman",serif'>Exercise 4</span></b><span
+lang=EN-US style='font-family:"Times New Roman",serif'> Modelling UDP traffic
+with specific throughput</span></p>
+
+<p class=MsoBodyText style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:49.5pt'><span lang=EN-US style='font-family:"Times New Roman",serif'>&nbsp;</span></p>
+
+<p class=MsoBodyText style='margin-left:49.5pt;text-indent:-33.0pt'><span
+lang=EN-US style='font-family:"Times New Roman",serif'>3.1.</span><span
+lang=EN-US style='font-size:7.0pt;font-family:"Times New Roman",serif'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+lang=EN-US style='font-family:"Times New Roman",serif'>Repeat the simulation
+from Ex. 1, keeping the same packet size but selecting the interval so that the
+throughput of the UDP flow would be the same as the throughput of the TCP stop
+and wait flow from Ex. 2. Show your calculations for the interval_ parameter.</span></p>
+
+<p class=MsoBodyText style='margin-left:49.5pt;text-indent:-33.0pt'><span
+lang=EN-US style='font-family:"Times New Roman",serif'>3.2.</span><span
+lang=EN-US style='font-size:7.0pt;font-family:"Times New Roman",serif'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+lang=EN-US style='font-family:"Times New Roman",serif'>Inspect the trace file
+and calculate the effective throughput of the simulated connection to confirm
+if the specified throughput has been achieved (also, show the relevant lines
+from the trace file in your lab report). </span></p>
+
+<p class=MsoBodyText style='margin-left:49.5pt;text-indent:-33.0pt'><span
+lang=EN-US style='font-family:"Times New Roman",serif'>3.3.</span><span
+lang=EN-US style='font-size:7.0pt;font-family:"Times New Roman",serif'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+lang=EN-US style='font-family:"Times New Roman",serif'>Comment on the achieved
+link utilizations in Exercises 1, 2, 3 and 4. (Hint: link utilization is the
+throughput stated as the percentage of the link data rate.)</span></p>
+
+<p class=MsoBodyText style='margin-bottom:0cm'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:-49.95pt;margin-bottom:
+12.0pt;margin-left:0cm'><span lang=EN-US>Complete and then prepare the
+documentation for Exercises 1 to 3 (use the headings indicating the question
+number) and store it in a <b>single PDF file</b>. Include a preamble (title,
+section) with your name, student number, course number etc. Please number all
+the pages! Submit this single PDF file on D2L as Lab 2 Report by the due date
+indicated in the D2L dropbox.</span></p>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:-49.95pt;margin-bottom:
+12.0pt;margin-left:0cm'><i><span lang=EN-US style='font-size:8.0pt'>Maintained
+by <a href="mailto:pochec@unb.ca">pochec@unb.ca</a></span></i></p>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:-49.95pt;margin-bottom:
+12.0pt;margin-left:0cm'><span lang=EN-US>&nbsp;</span></p>
+
+</div>
+
+</body>
+
+</html>
+&#26;
